@@ -22,7 +22,6 @@ public class CreditTradeMqChainHandler implements CreditApplyMqChain.Chain<Reque
         this.response= response;
     }
 
-
     @Override
     public Request request() {
         return request;
