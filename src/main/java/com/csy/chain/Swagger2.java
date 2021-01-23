@@ -22,7 +22,7 @@ public class Swagger2 {
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
         		.select().apis(
-                RequestHandlerSelectors.basePackage("com.csy.pipeline.web")).paths(
+                RequestHandlerSelectors.basePackage("com.csy.chain.web")).paths(
                 PathSelectors.any()).build();
     }
 

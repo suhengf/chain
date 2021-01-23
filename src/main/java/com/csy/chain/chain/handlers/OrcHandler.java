@@ -10,6 +10,9 @@ public class OrcHandler implements CreditApplyMqChain {
     @Override
     public TradeContext process(Chain<Request, TradeContext> chain) {
         TradeContext response = chain.response();
+        response.setCheckSuccess(false);
+        response.setErrorCode("失败");
+        response.setErrorMsg("000000");
         return chain.process(chain.request(),response);
     }
 }

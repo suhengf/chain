@@ -1,4 +1,14 @@
 package com.csy.chain.chain;
 
+import lombok.Data;
+
+@Data
 public class TradeContext {
+
+    private boolean checkSuccess;
+
+    private String errorMsg;
+
+    private String errorCode;
+
 }

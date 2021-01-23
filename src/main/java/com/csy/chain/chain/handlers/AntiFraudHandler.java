@@ -10,6 +10,9 @@ public class AntiFraudHandler implements CreditApplyMqChain {
     @Override
     public TradeContext process(Chain<Request, TradeContext> chain) {
         TradeContext response = chain.response();
+        response.setCheckSuccess(true);
+        response.setErrorCode("成功");
+        response.setErrorMsg("000000");
         return chain.process(chain.request(),response);
     }
 }
