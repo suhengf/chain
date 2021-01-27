@@ -8,4 +8,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface ServerCatch {
 
+    int maxtryCount() default 0;
+
 }

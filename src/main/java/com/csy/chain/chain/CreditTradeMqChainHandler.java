@@ -40,11 +40,16 @@ public class CreditTradeMqChainHandler implements CreditApplyMqChain.Chain<Reque
         CreditApplyMqTradeChain.Chain<Request,TradeContext> next = new CreditTradeMqChainHandler(handlers,index+1,request,response);
         CreditApplyMqChain handle = handlers.get(index);
         log.info("当前处理类：{}"+handle.getClass().getName(),index);
-        response =  handle.process(next);
-        log.info("当前handle处理response{}", JSONObject.toJSON(response));
-        if(response==null){
-           log.error("异常");
+        if(response.isHandUp()){
+            return response;
         }
+        response =  handle.process(next);
+
+
+
+
+        log.info("当前handle处理response{}", JSONObject.toJSON(response));
+
         return response;
     }
 

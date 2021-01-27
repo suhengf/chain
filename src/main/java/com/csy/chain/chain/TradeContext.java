@@ -11,4 +11,8 @@ public class TradeContext {
 
     private String errorCode;
 
+    private boolean isHandUp;
+
+    private String nodeName;
+
 }

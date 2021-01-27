@@ -13,6 +13,8 @@ public class AntiFraudHandler implements CreditApplyMqChain {
         response.setCheckSuccess(true);
         response.setErrorCode("成功");
         response.setErrorMsg("000000");
+        response.setHandUp(false);
+        response.setNodeName("antiFraudHandler");
         return chain.process(chain.request(),response);
     }
 }
