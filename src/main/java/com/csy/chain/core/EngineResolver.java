@@ -15,8 +15,8 @@ import java.util.Map;
  * 引擎解析器。
  * <p>通过spring的特性策略模式初始化EngineExecutorMap</p>
  *
- * @author chenshengyue
- * @since $Revision:1.0.0, $Date: 2019年3月22日 上午10:59:49 $
+ * @author liuulingfeng
+ * @since $Revision:1.0.0, $Date: 2021年1月27日 上午10:59:49 $
  */
 @Component
 public class EngineResolver implements InitializingBean, ApplicationContextAware {
