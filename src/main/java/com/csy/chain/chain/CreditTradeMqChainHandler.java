@@ -43,6 +43,9 @@ public class CreditTradeMqChainHandler implements CreditApplyMqChain.Chain<Reque
         if(response.isHandUp()){
             return response;
         }
+        if(response.isCheckSuccess()){
+            return response;
+        }
         response =  handle.process(next);
 
 

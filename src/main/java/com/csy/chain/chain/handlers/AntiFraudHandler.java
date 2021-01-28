@@ -4,6 +4,7 @@ import com.csy.chain.chain.CreditApplyMqChain;
 import com.csy.chain.chain.Request;
 import com.csy.chain.chain.TradeContext;
 import com.csy.chain.common.exception.BizException;
+import com.csy.chain.core.aop.ServerCatch;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class AntiFraudHandler implements CreditApplyMqChain {
 
 
+    @ServerCatch
     @Retryable(value= BizException.class,maxAttempts = 1,backoff = @Backoff(delay = 2000L))
     @Override
     public TradeContext process(Chain<Request, TradeContext> chain) {

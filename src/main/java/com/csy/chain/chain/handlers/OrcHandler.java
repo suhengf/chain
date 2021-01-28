@@ -42,6 +42,7 @@ public class OrcHandler implements CreditApplyMqChain {
         TradeContext response = chain.response();
         log.info(response.getErrorCode());
         response.setErrorMsg("19999999991991");
+        response.setCheckSuccess(true);
         log.info("补偿机制");
         return chain.process(chain.request(),response);
     }
