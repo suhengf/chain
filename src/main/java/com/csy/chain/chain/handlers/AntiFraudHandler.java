@@ -15,7 +15,7 @@ public class AntiFraudHandler implements CreditApplyMqChain {
 
 
     @ServerCatch
-    @Retryable(value= BizException.class,maxAttempts = 1,backoff = @Backoff(delay = 2000L))
+    @Retryable(value= Exception.class,maxAttempts = 2,backoff = @Backoff(delay = 2000L))
     @Override
     public TradeContext process(Chain<Request, TradeContext> chain) {
         log.info("尝试. .........1");
@@ -25,11 +25,13 @@ public class AntiFraudHandler implements CreditApplyMqChain {
         response.setErrorMsg("000000");
         response.setHandUp(false);
         response.setNodeName("antiFraudHandler");
-        if(true){
-            throw new BizException("222222222");
-        }
+//        if(true){
+//            throw new BizException("222222222");
+//        }
         return chain.process(chain.request(),response);
     }
+
+
 
     @Override
     public TradeContext recover(Exception e, Chain<Request, TradeContext> chain) {

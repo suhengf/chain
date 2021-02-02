@@ -1,9 +1,6 @@
 package com.csy.chain.chain;
 
-import com.csy.chain.common.exception.BizException;
-import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
-import org.springframework.retry.annotation.Retryable;
 
 public interface CreditApplyMqTradeChain <T,R>{
 

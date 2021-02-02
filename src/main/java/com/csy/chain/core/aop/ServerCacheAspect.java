@@ -25,9 +25,12 @@ public class ServerCacheAspect {
     public Object around(ProceedingJoinPoint proceedingJoinPoint){
 
         try{
-
-            return proceedingJoinPoint.proceed();
-
+        log.info("sssssssssssssssssssssssss");
+            Object proceed = proceedingJoinPoint.proceed();
+            if(true){
+                throw new BizException("sssssssssssssssssadaa");
+            }
+            return proceed;
         } catch (Throwable e) {
 
             //参数异常捕获
