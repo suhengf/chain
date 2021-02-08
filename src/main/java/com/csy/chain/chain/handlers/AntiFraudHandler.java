@@ -5,17 +5,25 @@ import com.csy.chain.chain.Request;
 import com.csy.chain.chain.TradeContext;
 import com.csy.chain.common.exception.BizException;
 import com.csy.chain.core.aop.ServerCatch;
+import com.csy.chain.core.pipeline.rollback.RollBack;
+import com.csy.chain.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 @Slf4j
 @Component("antiFraudHandler")
 public class AntiFraudHandler implements CreditApplyMqChain {
 
 
-    @ServerCatch
+    @Autowired
+    private UserService userService;
+
     @Retryable(value= Exception.class,maxAttempts = 2,backoff = @Backoff(delay = 2000L))
+    @Transactional(rollbackFor = BizException.class)
     @Override
     public TradeContext process(Chain<Request, TradeContext> chain) {
         log.info("尝试. .........1");
@@ -25,9 +33,10 @@ public class AntiFraudHandler implements CreditApplyMqChain {
         response.setErrorMsg("000000");
         response.setHandUp(false);
         response.setNodeName("antiFraudHandler");
-//        if(true){
-//            throw new BizException("222222222");
-//        }
+        userService.insert();
+        if(true){
+            throw new BizException("222222222");
+        }
         return chain.process(chain.request(),response);
     }
 
